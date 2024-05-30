@@ -103,7 +103,21 @@ explore: pricing_group_t {}
 
 explore: hour_type_t {}
 
-explore: pricing_plan_t {}
+explore: pricing_plan_t {
+
+# Custom code - mpv - pricing_plan_t
+join: function_t {
+  type: left_outer
+  relationship: many_to_one
+  sql_on: ${pricing_plan_t.function_code} = ${function_t.function_code};;
+}
+join: hour_type_t {
+  type: left_outer
+  relationship:  many_to_one
+  sql_on: ${hour_type_t.fiscal_year} = ${pricing_plan_t.fiscal_year}  AND ${hour_type_t.hour_type_code} = ${pricing_plan_t.hour_type_code} ;;
+}
+# Custom code completed - pricing_plan_t
+}
 
 explore: revenue_group_t {}
 

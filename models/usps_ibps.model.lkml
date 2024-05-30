@@ -351,7 +351,7 @@ explore: finance_number_join_t {
   join: split_week_factors_t {
     type: left_outer
     relationship:  many_to_one
-    sql_on: ${work_hour_plan_t.fiscal_year}.fiscal_year} = ${split_week_factors_t.fiscal_year}  AND ${work_hour_plan_t.split_week_number} = ${split_week_factors_t.split_week_number};;
+    sql_on: ${work_hour_plan_t.fiscal_year} = ${split_week_factors_t.fiscal_year}  AND ${work_hour_plan_t.split_week_number} = ${split_week_factors_t.split_week_number};;
   }
   # Custom code completed - finance_number_t
 }

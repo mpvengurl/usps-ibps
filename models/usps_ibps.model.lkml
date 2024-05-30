@@ -114,7 +114,7 @@ explore: pricing_plan_t {
     type: left_outer
     relationship:  many_to_one
   sql_on: ${hour_type_t.fiscal_year} = ${pricing_plan_t.fiscal_year}  AND ${hour_type_t.hour_type_code} = ${pricing_plan_t.hour_type_code} ;;
-}
+  }
 # Custom code completed - pricing_plan_t
 }
 

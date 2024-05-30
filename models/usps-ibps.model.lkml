@@ -34,7 +34,13 @@ explore: area_region_t {}
 
 explore: fiscal_year_t {}
 
-explore: finance_number_t {}
+explore: finance_number_t {
+  join: work_hour_plan_t {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${finance_number_t.fiscal_year} = ${work_hour_plan_t.fiscal_year} AND ${finance_number_t.finance_number} = ${work_hour_plan_t.finance_number};;
+  }
+}
 
 explore: finance_number_org_updates_t {}
 
@@ -309,3 +315,18 @@ explore: work_load_indicator_plan_t {}
 explore: work_load_indicator_t {}
 
 explore: user_t {}
+
+# explore: custom_split_week_hour_plan_t {
+#  join:  work_hours_plan_t{
+#    view_label: "Join split_week_factors_t.fiscal_year to work_hours_plan_t.fiscal_year"
+#    sql_on: ${split_week_factors_t.fiscal_year} = ${work_hours_plan_t.fiscal_year} ;;
+#  }
+#  join: custom_join_split_week_number {
+#    view_label: "Join split_week_factors_t.split_week_number to work_hours_plan_t. split_week_number"
+#    sql_on: $(split_week_factors_t.split_week_number} = ${work_hours_plan_t.split_week_number} ;;
+#  }
+#  join: custom_join_budget_week {
+#    view_label: "Join calendar_t.budget_week to work_hour_plan_t.budget_week"
+#    sql_on: ${calendar_t.budget_week} = ${work_hour_plan_t.budget_week} ;;
+#  }
+#}

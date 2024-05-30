@@ -34,20 +34,7 @@ explore: area_region_t {}
 
 explore: fiscal_year_t {}
 
-explore: finance_number_t {
-# Custom code - mpv - finance_number_t
-  join: work_hour_plan_t {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${finance_number_t.fiscal_year} = ${work_hour_plan_t.fiscal_year} AND ${finance_number_t.finance_number} = ${work_hour_plan_t.finance_number};;
-  }
-  join: split_week_factors_t {
-    type: left_outer
-    relationship:  many_to_one
-    sql_on: ${work_hour_plan_t.fiscal_year} = ${split_week_factors_t.fiscal_year}  AND ${work_hour_plan_t.split_week_number}.split_week_number} = ${split_week_factors_t.split_week_number}.split_week_number};;
-  }
-  # Custom code completed - finance_number_t
-}
+explore: finance_number_t {}
 
 explore: finance_number_org_updates_t {}
 
@@ -352,4 +339,19 @@ explore: pricing_plan_join_t {
     sql_on: ${hour_type_t.fiscal_year} = ${pricing_plan_join_t.fiscal_year}  AND ${hour_type_t.hour_type_code} = ${pricing_plan_join_t.hour_type_code} ;;
   }
 # Custom code completed - pricing_plan_t
+}
+
+explore: finance_number_join_t {
+# Custom code - mpv - finance_number_t
+  join: work_hour_plan_t {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${finance_number_join_t.fiscal_year} = ${work_hour_plan_t.fiscal_year} AND ${finance_number_join_t.finance_number} = ${work_hour_plan_t.finance_number};;
+  }
+  join: split_week_factors_t {
+    type: left_outer
+    relationship:  many_to_one
+    sql_on: ${work_hour_plan_t.fiscal_year}.fiscal_year} = ${split_week_factors_t.fiscal_year}  AND ${work_hour_plan_t.split_week_number} = ${split_week_factors_t.split_week_number};;
+  }
+  # Custom code completed - finance_number_t
 }

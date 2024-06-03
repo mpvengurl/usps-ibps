@@ -10,6 +10,9 @@ datagroup: usps_ibps_default_datagroup {
 
 persist_with: usps_ibps_default_datagroup
 
+
+explore: work_plan_paul {}
+
 explore: employee_category_t {}
 
 explore: calendar_t {}

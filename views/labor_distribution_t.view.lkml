@@ -32,6 +32,7 @@ view: labor_distribution_t {
     sql: ${TABLE}.labor_distribution_code ;;
   }
   dimension: labor_distribution_name {
+    label: "labor Distribution Name"
     type: string
     sql: ${TABLE}.labor_distribution_name ;;
   }

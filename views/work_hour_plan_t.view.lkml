@@ -21,6 +21,7 @@ view: work_hour_plan_t {
   dimension: function_code {
     type: string
     sql: ${TABLE}.function_code ;;
+    drill_fields: [labor_distribution_code,labor_distribution_t.labor_distribution_name]
   }
   dimension: labor_distribution_code {
     type: string

@@ -12,6 +12,7 @@ view: function_t {
   dimension: function_name {
     type: string
     sql: ${TABLE}.function_name ;;
+    drill_fields: [labor_distribution_t.labor_distribution_name]
   }
   measure: count {
     type: count

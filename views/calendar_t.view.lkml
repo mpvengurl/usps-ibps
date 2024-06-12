@@ -67,4 +67,9 @@ view: calendar_t {
   measure: count {
     type: count
   }
+
+  # measure: first_day_split_Week {
+  #   type: min
+  #   sql:  ;;
+
 }

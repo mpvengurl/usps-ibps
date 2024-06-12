@@ -10,6 +10,29 @@ datagroup: usps_ibps_default_datagroup {
 
 persist_with: usps_ibps_default_datagroup
 
+explore: work_hour_plan_t {
+  label: "Work Plan"
+  join: calendar_t {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${calendar_t.split_week_number}=${work_hour_plan_t.split_week_number};;
+  }
+  join: labor_distribution_t {
+    type: left_outer
+    sql_on: ${work_hour_plan_t.labor_distribution_code}=${labor_distribution_t.labor_distribution_code};;
+    relationship:many_to_one
+  }
+  join: finance_number_t {
+    type: left_outer
+    sql_on: ${work_hour_plan_t.finance_number}=${finance_number_t.finance_number};;
+    relationship:many_to_one
+  }
+  join: function_t {
+    type: left_outer
+    sql_on: ${work_hour_plan_t.function_code}=${function_t.function_code};;
+    relationship:many_to_one
+  }
+}
 
 explore: work_plan_paul {}
 
@@ -274,7 +297,7 @@ explore: system_lock_work_load_indicator_plan_t {
 
 explore: user_settings_t {}
 
-explore: work_hour_plan_t {}
+# explore: work_hour_plan_t {}
 
 explore: system_lock_work_hour_plan_t {
     join: system_lock_work_hour_plan_t__week_number {

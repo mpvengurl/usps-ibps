@@ -43,7 +43,9 @@ view: work_hour_plan_t {
     type: string
     sql: ${TABLE}.user_modified ;;
   }
-  measure: count {
-    type: count
+  measure: total_plan_hours {
+    type: sum
+    sql: ${TABLE}.plan_hours ;;
+    drill_fields: [function_code,labor_distribution_code,total_plan_hours]
   }
 }

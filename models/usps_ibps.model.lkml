@@ -36,6 +36,8 @@ explore: work_hour_plan_t {
 
 explore: work_plan_paul {}
 
+explore: pricing_plan_paul {}
+
 explore: employee_category_t {}
 
 explore: calendar_t {}

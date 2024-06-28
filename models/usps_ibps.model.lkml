@@ -34,6 +34,9 @@ explore: work_hour_plan_t {
   }
 }
 
+
+explore: bopr_paul {}
+
 explore: work_plan_paul {}
 
 explore: pricing_plan_paul {}

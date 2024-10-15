@@ -58,10 +58,10 @@ view: bopr_paul {
         revenue_second AS ( SELECT *,
         case WHEN line ='01' THEN 'TOTAL PERMIT'
         WHEN line ='02' THEN 'TOTAL OTHER COMM'
-        WHEN line ='03' THEN 'TOT RETAIL POSTAGE'
-        WHEN line ='04' THEN 'TOT RETAIL SERVICES'
-        WHEN line ='05' THEN 'TOT RETAIL PRODUCTS'
-        WHEN line ='06' THEN 'TOT OTH RETAIL CHAN'
+        WHEN line ='03' THEN 'TOT SHIPPING CHARGES'
+        WHEN line ='04' THEN 'TOT SHIPPING SERVICES'
+        WHEN line ='05' THEN 'TOT SHIPPING PRODUCTS'
+        WHEN line ='06' THEN 'TOT OTH SHIPPING CHAN'
         WHEN line ='07' THEN 'TOTAL OTHER INCOME'
         WHEN line ='08' THEN 'APPROPRIATIONS'
         WHEN line ='09' THEN 'INVESTMENT INCOME' END AS description FROM revenue_first
@@ -74,10 +74,10 @@ view: bopr_paul {
         function_distribution_code,
         case WHEN line ='01' THEN 'TOTAL PERMIT'
         WHEN line ='02' THEN 'TOTAL OTHER COMM'
-        WHEN line ='03' THEN 'TOT RETAIL POSTAGE'
-        WHEN line ='04' THEN 'TOT RETAIL SERVICES'
-        WHEN line ='05' THEN 'TOT RETAIL PRODUCTS'
-        WHEN line ='06' THEN 'TOT OTH RETAIL CHAN'
+        WHEN line ='03' THEN 'TOT SHIPPING CHARGES'
+        WHEN line ='04' THEN 'TOT SHIPPING SERVICES'
+        WHEN line ='05' THEN 'TOT SHIPPING PRODUCTS'
+        WHEN line ='06' THEN 'TOT OTH SHIPPING CHAN'
         WHEN line ='07' THEN 'TOTAL OTHER INCOME'
         WHEN line ='08' THEN 'APPROPRIATIONS'
         WHEN line ='09' THEN 'INVESTMENT INCOME' END AS description FROM hq_revenue_first),
@@ -141,7 +141,7 @@ view: bopr_paul {
         revenueSection.district_division_code,
         'nil' as function_code,
         '05A' as line,
-        'SUBTOTAL RETAIL UNIT SALES' as description,
+        'SUBTOTAL SHIPPING UNIT SALES' as description,
         revenueSection.fiscal_year_month,
         CASE WHEN
           line = '03' OR line = '04' OR line = '05' THEN ttl
@@ -159,7 +159,7 @@ view: bopr_paul {
         revenueSection.district_division_code,
         'nil' as function_code,
         '06A' as line,
-        'TOTAL RETAIL REVENUE' as description,
+        'TOTAL SHIPPING REVENUE' as description,
         revenueSection.fiscal_year_month,
         CASE WHEN
           line = '03' OR line = '04' OR line = '05' OR line = '06' THEN ttl
@@ -535,7 +535,7 @@ expensesSection as (
                 WHEN line_number_code ='6G' THEN 'BLDG IMPROVEMENT F'
                 WHEN line_number_code ='6H' THEN 'FIXED MECHANIZATION'
                 WHEN line_number_code ='6J' THEN 'NON-FIXED MECH'
-                WHEN line_number_code ='6K' THEN 'OTHER MAIL HANDLNG'
+                WHEN line_number_code ='6K' THEN 'OTHER PACKAGE HANDLNG'
                 WHEN line_number_code ='6L' THEN 'AUTO EQUIPMENT'
                 WHEN line_number_code ='6M' THEN 'CAPITALIZED SOFTWAR'
                 WHEN line_number_code ='6N' THEN 'VEHICLE PURCHASES'
@@ -580,8 +580,8 @@ expensesSection as (
               CASE
 
                 WHEN lineNbr ='10' THEN 'OPERATIONS SUPPORT (F0)'
-                WHEN lineNbr ='11' THEN 'MAIL PROCESSING (F1)'
-                WHEN lineNbr ='12' THEN 'RURAL DELIVERY (F2A)'
+                WHEN lineNbr ='11' THEN 'PACKAGE PROCESSING (F1)'
+                WHEN lineNbr ='12' THEN 'RURAL DISPATCH (F2A)'
                 WHEN lineNbr ='13' THEN 'VEHICLE SERVICES (F3A)'
                 WHEN lineNbr ='14' THEN 'CUSTOMER SERVICE (F4)'
                 WHEN lineNbr ='15' THEN 'FINANCE (F5)'
@@ -590,7 +590,7 @@ expensesSection as (
                 WHEN lineNbr ='18' THEN 'ADMINISTRATION (F8)'
                 WHEN lineNbr ='20' THEN 'LIMITED DUTY'
                 WHEN lineNbr ='21' THEN 'REHABILITATION'
-                WHEN lineNbr ='22' THEN 'CITY DELIVERY (F2B)'
+                WHEN lineNbr ='22' THEN 'CITY DISPATCH (F2B)'
                 WHEN lineNbr ='23' THEN 'PLANT & EQUIP MAINT (F3B)'
                 WHEN lineNbr ='24' THEN 'HQ GENERAL MGMT'
                 WHEN lineNbr ='27' THEN 'FLEX PLAN ADJ-FIELD'
@@ -666,7 +666,7 @@ expensesSection as (
                 WHEN lineNbr ='6G' THEN 'BLDG IMPROVEMENT F'
                 WHEN lineNbr ='6H' THEN 'FIXED MECHANIZATION'
                 WHEN lineNbr ='6J' THEN 'NON-FIXED MECH'
-                WHEN lineNbr ='6K' THEN 'OTHER MAIL HANDLNG'
+                WHEN lineNbr ='6K' THEN 'OTHER PACKAGE HANDLNG'
                 WHEN lineNbr ='6L' THEN 'AUTO EQUIPMENT'
                 WHEN lineNbr ='6M' THEN 'CAPITALIZED SOFTWAR'
                 WHEN lineNbr ='6N' THEN 'VEHICLE PURCHASES'
@@ -1217,9 +1217,9 @@ SELECT
     CASE
         WHEN line = '10' AND description = 'DOLLARS' THEN 'OPERATIONS SUPPORT (F0)'
         WHEN line = '10' AND description = 'WORK HOURS' THEN '    F0 WORK HOURS'
-        WHEN line = '11' AND description = 'DOLLARS' THEN 'MAIL PROCESSING (F1)'
+        WHEN line = '11' AND description = 'DOLLARS' THEN 'PACKAGE PROCESSING (F1)'
         WHEN line = '11' AND description = 'WORK HOURS' THEN '    F1 WORK HOURS'
-        WHEN line = '12' and description = 'DOLLARS' THEN 'RURAL DELIVERY(F2A)'
+        WHEN line = '12' and description = 'DOLLARS' THEN 'RURAL DISPATCH(F2A)'
         WHEN line = '12' AND description = 'WORK HOURS' THEN '    F2A WORK HOURS'
         WHEN line = '13' AND description = 'DOLLARS' THEN 'VEHICLE SERVICES (F3A)'
         WHEN line = '13' AND description = 'WORK HOURS' THEN '    F3A WORK HOURS'
@@ -1236,7 +1236,7 @@ SELECT
         WHEN line = '18' AND description = 'DOLLARS' THEN 'ADMINISTRATION (F8)'
         WHEN line = '18' AND description = 'WORK HOURS' THEN '    F8 WORK HOURS'
 
-        WHEN line = '22' AND description = 'DOLLARS' THEN 'CITY DELIVERY (F2B)'
+        WHEN line = '22' AND description = 'DOLLARS' THEN 'CITY DISPATCH (F2B)'
         WHEN line = '22' AND description = 'WORK HOURS' THEN '    F2B WORK HOURS'
 
         WHEN line = '23' AND description = 'DOLLARS' THEN'PLANT & EQUIP MAINT (F3B)'
@@ -1249,8 +1249,8 @@ SELECT
       ,
       CASE
         WHEN description = 'TOTAL COMMERCIAL REVENUE' THEN '**'
-        WHEN description = 'SUBTOTAL RETAIL UNIT SALES' THEN '**'
-        WHEN description = 'TOTAL RETAIL REVENUE' THEN '**'
+        WHEN description = 'SUBTOTAL SHIPPING UNIT SALES' THEN '**'
+        WHEN description = 'TOTAL SHIPPING REVENUE' THEN '**'
         WHEN description = 'TOTAL ALL REVENUE' THEN '**'
 
         WHEN description = 'TOTAL DOLLARS' THEN '**'
@@ -1295,6 +1295,7 @@ SELECT
   }
 
   dimension: BoprReportDescription {
+    label: "Line Description "
     type: string
     sql: ${TABLE}.BoprReportDescription ;;
   }
@@ -1367,11 +1368,19 @@ SELECT
         ELSE SUM(${TABLE}.ttl)
     END ;;
     drill_fields: [detail*]
+    value_format: "0.000,,\" M\""
     ##value_format: "[<=100]$0.00;#,##0"
-    value_format: "#,##0"
+    # value_format: "#,##0"
 
 
   }
+
+measure: sum_dollars{
+  type: sum
+  sql: ${TABLE}.ttl/100 ;;
+  value_format: "$0.000,,\" M\""
+
+}
 
   set: detail {
     fields: [

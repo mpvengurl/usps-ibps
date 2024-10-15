@@ -27,6 +27,7 @@ view: pricing_plan_paul {
               WHERE fn.function_name is not null
               AND pricingPlan.accounting_period = cal.accounting_period
               ;;
+  # datagroup_trigger:usps_ibps_default_datagroup
   }
 
   measure: count {
@@ -142,6 +143,17 @@ view: pricing_plan_paul {
   dimension: function_name {
     type: string
     sql: ${TABLE}.function_name ;;
+  }
+measure: sum_of_dollars {
+  type: sum
+  sql: ${TABLE}.dollars / 1000000;;
+  value_format: "$ 0.000,,\" M\""
+}
+
+  measure: sum_of_planhours {
+    type: sum
+    sql: ${TABLE}.plan_hours / 10000;;
+    value_format: "0.000,,\" M\""
   }
 
   set: detail {

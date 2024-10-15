@@ -22,12 +22,14 @@ view: work_plan_paul {
       left join `usps-demo-421820.ibps.finance_number_t` fNo on plan.finance_number = fNO.finance_number
       left join `usps-demo-421820.ibps.function_t` function on ldc.function_code = function.function_code
       ;;
+  # datagroup_trigger:usps_ibps_default_datagroup
   }
 
   measure: total_plan_hours {
     sql: ${plan_hours} ;;
     type: sum
-    drill_fields: [function_code, function_name, labor_distribution_code, labor_distribution_name, split_week_number ]
+    value_format: "0.0,,\" M\""
+    drill_fields: [function_code, function_name, labor_distribution_code, labor_distribution_name, total_plan_hours ]
   }
 
   dimension: budget_week {
@@ -77,6 +79,7 @@ view: work_plan_paul {
   }
 
   dimension_group: first_day_of_split_week {
+    label: "Day of work hour"
     type: time
     sql: ${TABLE}.first_day_of_split_week ;;
   }

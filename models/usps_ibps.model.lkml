@@ -4,7 +4,7 @@ connection: "ibps"
 include: "/views/**/*.view.lkml"
 
 datagroup: usps_ibps_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  # sql_trigger: SELECT MAX(last_update_date_time) FROM `ibps.pricing_plan_t`;;
   max_cache_age: "1 hour"
 }
 
@@ -34,86 +34,86 @@ explore: work_hour_plan_t {
   }
 }
 
-
+explore: function_t {}
 explore: bopr_paul {}
 
 explore: work_plan_paul {}
 
 explore: pricing_plan_paul {}
 
-explore: employee_category_t {}
+# explore: employee_category_t {}
 
-explore: calendar_t {}
+# explore: calendar_t {}
 
-explore: budget_approved_t {}
+# explore: budget_approved_t {}
 
-explore: area_region_month_status_t {}
+# explore: area_region_month_status_t {}
 
-explore: budget_transmittal_letter_t {
-    join: budget_transmittal_letter_t__area_region_code {
-      view_label: "Budget Transmittal Letter T: Area Region Code"
-      sql: LEFT JOIN UNNEST(${budget_transmittal_letter_t.area_region_code}) as budget_transmittal_letter_t__area_region_code ;;
-      relationship: one_to_many
-    }
-}
+# explore: budget_transmittal_letter_t {
+#     join: budget_transmittal_letter_t__area_region_code {
+#       view_label: "Budget Transmittal Letter T: Area Region Code"
+#       sql: LEFT JOIN UNNEST(${budget_transmittal_letter_t.area_region_code}) as budget_transmittal_letter_t__area_region_code ;;
+#       relationship: one_to_many
+#     }
+# }
 
-explore: district_division_t {}
+# explore: district_division_t {}
 
-explore: announcement_t {}
+# explore: announcement_t {}
 
-explore: area_region_t {}
+# explore: area_region_t {}
 
-explore: fiscal_year_t {}
+# explore: fiscal_year_t {}
 
-explore: finance_number_t {}
+# explore: finance_number_t {}
 
-explore: finance_number_org_updates_t {}
+# explore: finance_number_org_updates_t {}
 
-explore: hq_line_number_plan_t {}
+# explore: hq_line_number_plan_t {}
 
-explore: fncm_finance_number_t {}
+# explore: fncm_finance_number_t {}
 
-explore: function_t {}
+# explore: function_t {}
 
-explore: hq_line_number_plan_t_error_records {
-    join: hq_line_number_plan_t_error_records__attributes {
-      view_label: "Hq Line Number Plan T Error Records: Attributes"
-      sql: LEFT JOIN UNNEST(${hq_line_number_plan_t_error_records.attributes}) as hq_line_number_plan_t_error_records__attributes ;;
-      relationship: one_to_many
-    }
-}
+# explore: hq_line_number_plan_t_error_records {
+#     join: hq_line_number_plan_t_error_records__attributes {
+#       view_label: "Hq Line Number Plan T Error Records: Attributes"
+#       sql: LEFT JOIN UNNEST(${hq_line_number_plan_t_error_records.attributes}) as hq_line_number_plan_t_error_records__attributes ;;
+#       relationship: one_to_many
+#     }
+# }
 
-explore: hq_revenue_plan_t_error_records {
-    join: hq_revenue_plan_t_error_records__attributes {
-      view_label: "Hq Revenue Plan T Error Records: Attributes"
-      sql: LEFT JOIN UNNEST(${hq_revenue_plan_t_error_records.attributes}) as hq_revenue_plan_t_error_records__attributes ;;
-      relationship: one_to_many
-    }
-}
+# explore: hq_revenue_plan_t_error_records {
+#     join: hq_revenue_plan_t_error_records__attributes {
+#       view_label: "Hq Revenue Plan T Error Records: Attributes"
+#       sql: LEFT JOIN UNNEST(${hq_revenue_plan_t_error_records.attributes}) as hq_revenue_plan_t_error_records__attributes ;;
+#       relationship: one_to_many
+#     }
+# }
 
-explore: hq_revenue_plan_t {}
+# explore: hq_revenue_plan_t {}
 
-explore: hq_work_hour_plan_t_error_records {
-    join: hq_work_hour_plan_t_error_records__attributes {
-      view_label: "Hq Work Hour Plan T Error Records: Attributes"
-      sql: LEFT JOIN UNNEST(${hq_work_hour_plan_t_error_records.attributes}) as hq_work_hour_plan_t_error_records__attributes ;;
-      relationship: one_to_many
-    }
-}
+# explore: hq_work_hour_plan_t_error_records {
+#     join: hq_work_hour_plan_t_error_records__attributes {
+#       view_label: "Hq Work Hour Plan T Error Records: Attributes"
+#       sql: LEFT JOIN UNNEST(${hq_work_hour_plan_t_error_records.attributes}) as hq_work_hour_plan_t_error_records__attributes ;;
+#       relationship: one_to_many
+#     }
+# }
 
-explore: hq_work_hour_plan_t {}
+# explore: hq_work_hour_plan_t {}
 
-explore: ibpsplan_jnbs_t {}
+# explore: ibpsplan_jnbs_t {}
 
-explore: labor_distribution_t {}
+# explore: labor_distribution_t {}
 
-explore: line_number_plan_t {}
+# explore: line_number_plan_t {}
 
-explore: line_number_group_t {}
+# explore: line_number_group_t {}
 
-explore: nonvalid_combination_t {}
+# explore: nonvalid_combination_t {}
 
-explore: pricing_group_t_org_updates_t {}
+# explore: pricing_group_t_org_updates_t {}
 
 explore: line_number_t {}
 

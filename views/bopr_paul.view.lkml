@@ -581,7 +581,7 @@ expensesSection as (
 
                 WHEN lineNbr ='10' THEN 'OPERATIONS SUPPORT (F0)'
                 WHEN lineNbr ='11' THEN 'PACKAGE PROCESSING (F1)'
-                WHEN lineNbr ='12' THEN 'RURAL DISPATCH (F2A)'
+                WHEN lineNbr ='12' THEN 'EXTENDED DISPATCH (F2A)'
                 WHEN lineNbr ='13' THEN 'VEHICLE SERVICES (F3A)'
                 WHEN lineNbr ='14' THEN 'CUSTOMER SERVICE (F4)'
                 WHEN lineNbr ='15' THEN 'FINANCE (F5)'
@@ -590,7 +590,7 @@ expensesSection as (
                 WHEN lineNbr ='18' THEN 'ADMINISTRATION (F8)'
                 WHEN lineNbr ='20' THEN 'LIMITED DUTY'
                 WHEN lineNbr ='21' THEN 'REHABILITATION'
-                WHEN lineNbr ='22' THEN 'CITY DISPATCH (F2B)'
+                WHEN lineNbr ='22' THEN 'LOCAL DISPATCH (F2B)'
                 WHEN lineNbr ='23' THEN 'PLANT & EQUIP MAINT (F3B)'
                 WHEN lineNbr ='24' THEN 'HQ GENERAL MGMT'
                 WHEN lineNbr ='27' THEN 'FLEX PLAN ADJ-FIELD'
@@ -1219,7 +1219,7 @@ SELECT
         WHEN line = '10' AND description = 'WORK HOURS' THEN '    F0 WORK HOURS'
         WHEN line = '11' AND description = 'DOLLARS' THEN 'PACKAGE PROCESSING (F1)'
         WHEN line = '11' AND description = 'WORK HOURS' THEN '    F1 WORK HOURS'
-        WHEN line = '12' and description = 'DOLLARS' THEN 'RURAL DISPATCH(F2A)'
+        WHEN line = '12' and description = 'DOLLARS' THEN 'EXTENDED DISPATCH(F2A)'
         WHEN line = '12' AND description = 'WORK HOURS' THEN '    F2A WORK HOURS'
         WHEN line = '13' AND description = 'DOLLARS' THEN 'VEHICLE SERVICES (F3A)'
         WHEN line = '13' AND description = 'WORK HOURS' THEN '    F3A WORK HOURS'
@@ -1236,7 +1236,7 @@ SELECT
         WHEN line = '18' AND description = 'DOLLARS' THEN 'ADMINISTRATION (F8)'
         WHEN line = '18' AND description = 'WORK HOURS' THEN '    F8 WORK HOURS'
 
-        WHEN line = '22' AND description = 'DOLLARS' THEN 'CITY DISPATCH (F2B)'
+        WHEN line = '22' AND description = 'DOLLARS' THEN 'LOCAL DISPATCH (F2B)'
         WHEN line = '22' AND description = 'WORK HOURS' THEN '    F2B WORK HOURS'
 
         WHEN line = '23' AND description = 'DOLLARS' THEN'PLANT & EQUIP MAINT (F3B)'

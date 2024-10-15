@@ -35,7 +35,9 @@ explore: work_hour_plan_t {
 }
 
 explore: function_t {}
-explore: bopr_paul {}
+explore: bopr_paul {
+  label: "Budget Data Model"
+}
 
 explore: work_plan_paul {}
 

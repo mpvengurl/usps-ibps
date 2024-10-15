@@ -1382,6 +1382,13 @@ measure: sum_dollars{
 
 }
 
+measure: Total_revenue {
+  type: sum
+  sql: CASE
+        WHEN ${TABLE}.description = 'TOTAL ALL REVENUE' THEN sum(${TABLE}.ttl)
+    END ;;
+}
+
   set: detail {
     fields: [
       fiscal_year,

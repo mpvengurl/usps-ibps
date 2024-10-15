@@ -111,14 +111,14 @@ view: finance_number_t {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	finance_number_name,
-	manager_of_post_office_operations_name,
-	district_division_name,
-	lead_finance_number_name,
-	function_distribution_name,
-	area_region_name,
-	customer_satisfaction_number_name
-	]
+  finance_number_name,
+  manager_of_post_office_operations_name,
+  district_division_name,
+  lead_finance_number_name,
+  function_distribution_name,
+  area_region_name,
+  customer_satisfaction_number_name
+  ]
   }
 
 }

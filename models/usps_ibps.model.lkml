@@ -11,6 +11,42 @@ datagroup: budget_default_datagroup {
 persist_with: budget_default_datagroup
 explore: revenue_details {}
 
+named_value_format: usd_in_millions {
+  value_format: "0.000,,\" M\""
+  strict_value_format: yes
+}
+
+explore: Expenses {
+  from: finance_number_t
+  join: line_number_plan_t{
+    type: left_outer
+    sql_on: ${Expenses.finance_number}=${line_number_plan_t.finance_number} and ${Expenses.fiscal_year}=${line_number_plan_t.fiscal_year} ;;
+    relationship: many_to_one
+  }
+  join: derived_salaries_benefits{
+    view_label: "Salaries and Benefit "
+    type: left_outer
+    sql_on: ${Expenses.finance_number}=${derived_salaries_benefits.finance_number} and ${Expenses.fiscal_year}=${derived_salaries_benefits.fiscal_year} ;;
+    relationship: many_to_one
+  }
+}
+
+
+explore: Work_Plan_Activities{
+  from: work_load_indicator_plan_t
+  join: work_load_indicator_t{
+    type: left_outer
+    sql_on: ${Work_Plan_Activities.work_load_indicator_code}=${work_load_indicator_t.work_load_indicator_code} and ${Work_Plan_Activities.fiscal_year}=${work_load_indicator_t.fiscal_year} ;;
+    relationship: many_to_one
+  }
+  ##Make a native derived table
+  # join: derived_calendar_t {
+  #   sql_on: ${calendar_t.split_week_number}=${Work_Plan_Activities.split_week_number} and ${calendar_t.fiscal_year}=${Work_Plan_Activities.fiscal_year};;
+  #   relationship: many_to_one
+  # }
+}
+
+
 explore: work_hour_plan_t {
   label: "Work Plan"
   join: calendar_t {

@@ -43,7 +43,8 @@ view: work_load_indicator_plan_t {
     type: string
     sql: ${TABLE}.work_load_indicator_code ;;
   }
-  measure: count {
-    type: count
+  measure: Activity_measure {
+    type: sum
+    sql: ${plan_wlis} ;;
   }
 }

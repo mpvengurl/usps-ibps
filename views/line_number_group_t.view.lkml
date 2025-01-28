@@ -1,4 +1,5 @@
 view: line_number_group_t {
+
   sql_table_name: `ibps.line_number_group_t` ;;
 
   dimension_group: create_date {

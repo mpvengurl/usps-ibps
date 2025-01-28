@@ -64,9 +64,16 @@ view: calendar_t {
     type: string
     sql: ${TABLE}.user_modified ;;
   }
+
+  dimension: unique_per_splitweek {
+    type: number
+    sql: dense_rank()over(partition by fiscal_year,fiscal_year_month,split_week_number,budget_week,accounting_period order by fiscal_year,split_week_number desc) ;;
+  }
   measure: count {
     type: count
   }
+
+
 
   # measure: first_day_split_Week {
   #   type: min

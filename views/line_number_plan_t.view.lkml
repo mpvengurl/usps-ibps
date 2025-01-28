@@ -1,4 +1,5 @@
 view: line_number_plan_t {
+  label: "Expenses"
   sql_table_name: `ibps.line_number_plan_t` ;;
 
   dimension_group: create_date {
@@ -43,7 +44,10 @@ view: line_number_plan_t {
     type: string
     sql: ${TABLE}.user_modified ;;
   }
-  measure: count {
-    type: count
+  measure: Totalexpense {
+    type: sum
+    sql: ${plan_dollars} ;;
+    value_format_name: usd
+    ##value_format:"$#,##0"
   }
 }

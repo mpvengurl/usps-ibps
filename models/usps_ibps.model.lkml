@@ -9,6 +9,7 @@ datagroup: budget_default_datagroup {
 }
 
 persist_with: budget_default_datagroup
+explore: revenue_details {}
 
 explore: work_hour_plan_t {
   label: "Work Plan"

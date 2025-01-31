@@ -1,6 +1,13 @@
 view: work_load_indicator_plan_t {
   sql_table_name: `ibps.work_load_indicator_plan_t` ;;
 
+  dimension: Primary_key {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.fiscal_year || ${TABLE}.finance_number ||${TABLE}.function_code ;;
+  }
+
+
   dimension: budget_week {
     type: string
     sql: ${TABLE}.budget_week ;;
@@ -16,7 +23,7 @@ view: work_load_indicator_plan_t {
   }
   dimension: fiscal_year {
     type: string
-    sql: ${TABLE}.fiscal_year ;;
+    sql:${TABLE}.fiscal_year;;
   }
   dimension: function_code {
     type: string
@@ -45,6 +52,6 @@ view: work_load_indicator_plan_t {
   }
   measure: Activity_measure {
     type: sum
-    sql: ${plan_wlis} ;;
+    sql: ${TABLE}.plan_wlis ;;
   }
 }

@@ -2,6 +2,12 @@ view: line_number_plan_t {
   label: "Expenses"
   sql_table_name: `ibps.line_number_plan_t` ;;
 
+  # dimension: Primary_key {
+  #   type: string
+  #   primary_key: yes
+  #   sql: ${TABLE}.fiscal_year || ${TABLE}.finance_number ;;
+  # }
+
   dimension_group: create_date {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -46,7 +52,7 @@ view: line_number_plan_t {
   }
   measure: Totalexpense {
     type: sum
-    sql: ${plan_dollars} ;;
+    sql: ${TABLE}.plan_dollars ;;
     value_format_name: usd
     ##value_format:"$#,##0"
   }

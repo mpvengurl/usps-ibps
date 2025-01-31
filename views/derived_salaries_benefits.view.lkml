@@ -1,7 +1,14 @@
 view: derived_salaries_benefits {
   sql_table_name: `usps-demo-421820.ibps.derived_salaries_benefits` ;;
 
-  dimension: area_region_code {
+
+dimension: Primary_key {
+  type: string
+  primary_key: yes
+  sql: ${TABLE}.fiscal_year ||${TABLE}.fiscal_year_month|| ${TABLE}.finance_number ||${TABLE}.function_code ;;
+}
+
+dimension: area_region_code {
     type: string
     sql: ${TABLE}.area_region_code ;;
   }
@@ -48,5 +55,6 @@ view: derived_salaries_benefits {
   measure: Salary_benefit_expense {
     type: sum
     sql: ${TABLE}.ttl ;;
+    value_format_name: usd
   }
 }

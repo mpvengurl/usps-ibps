@@ -1,6 +1,12 @@
 view: finance_number_t {
   sql_table_name: `ibps.finance_number_t` ;;
 
+  dimension: Primary_key {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.fiscal_year|| ${TABLE}.finance_number;;
+  }
+
   dimension: area_region_code {
     type: string
     sql: ${TABLE}.area_region_code ;;
@@ -43,6 +49,7 @@ view: finance_number_t {
     sql: ${TABLE}.finance_number ;;
   }
   dimension: finance_number_name {
+    label: "Finance Name"
     type: string
     sql: ${TABLE}.finance_number_name ;;
   }
@@ -103,22 +110,22 @@ view: finance_number_t {
     type: string
     sql: ${TABLE}.user_modified ;;
   }
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
+  # measure: count {
+  #   type: count
+  #   drill_fields: [detail*]
+  # }
 
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	finance_number_name,
-	manager_of_post_office_operations_name,
-	district_division_name,
-	lead_finance_number_name,
-	function_distribution_name,
-	area_region_name,
-	customer_satisfaction_number_name
-	]
+  finance_number_name,
+  manager_of_post_office_operations_name,
+  district_division_name,
+  lead_finance_number_name,
+  function_distribution_name,
+  area_region_name,
+  customer_satisfaction_number_name
+  ]
   }
 
 }

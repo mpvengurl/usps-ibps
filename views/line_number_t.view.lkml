@@ -28,29 +28,12 @@ view: line_number_t {
     sql: ${TABLE}.line_number_group_code ;;
   }
   dimension: line_number_name {
+    label: "Line Name"
+    description: "Expense type"
     type: string
     sql: ${TABLE}.line_number_name ;;
   }
-  dimension: switch_1 {
-    type: yesno
-    sql: ${TABLE}.switch_1 ;;
-  }
-  dimension: switch_2 {
-    type: yesno
-    sql: ${TABLE}.switch_2 ;;
-  }
-  dimension: switch_3 {
-    type: yesno
-    sql: ${TABLE}.switch_3 ;;
-  }
-  dimension: switch_4 {
-    type: yesno
-    sql: ${TABLE}.switch_4 ;;
-  }
-  dimension: switch_5 {
-    type: yesno
-    sql: ${TABLE}.switch_5 ;;
-  }
+
   dimension: user_modified {
     type: string
     sql: ${TABLE}.user_modified ;;
@@ -59,4 +42,5 @@ view: line_number_t {
     type: count
     drill_fields: [line_number_name]
   }
+
 }

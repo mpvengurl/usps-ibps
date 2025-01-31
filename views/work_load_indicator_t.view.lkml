@@ -1,11 +1,12 @@
 view: work_load_indicator_t {
-  sql_table_name: `ibps.work_load_indicator_t` ;;
+  sql_table_name: `ibps.work_load_indicator` ;;
 
   dimension_group: create_date {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.create_date_time ;;
   }
+
   dimension: fiscal_year {
     type: string
     sql: ${TABLE}.fiscal_year ;;

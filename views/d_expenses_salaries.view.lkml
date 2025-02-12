@@ -67,6 +67,7 @@ view: d_expenses_salaries {
   }
 
   measure: non_personnel_expenses {
+    description: "Amount spend, expenses"
     type: sum
     sql: ${TABLE}.expenses  ;;
     drill_fields: [district_division_name, finance_number_name, area_region_name]

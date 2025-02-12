@@ -48,10 +48,7 @@ dimension: area_region_code {
     type: string
     sql: ${TABLE}.pricing_group_number ;;
   }
-  dimension: ttl {
-    type: number
-    sql: ${TABLE}.ttl ;;
-  }
+
   measure: Salary_benefit_expense {
     type: sum
     sql: ${TABLE}.ttl ;;

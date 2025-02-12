@@ -16,7 +16,10 @@ named_value_format: usd_in_millions {
   strict_value_format: yes
 }
 
+explore: d_expenses_salaries {}
+
 explore: Expenses {
+  label: "Finance Details"
   fields: [
     Expenses.finance_number,
     Expenses.finance_number_name,
@@ -27,55 +30,56 @@ explore: Expenses {
     Expenses.district_division_name,
     Expenses.fiscal_year,
     line_number_plan_t.line_number_code,
-    Expenses.pricing_group_number,
+
     derived_salaries_benefits.function_code,
     derived_salaries_benefits.line,
-    function_t.function_name,
+    # function_t.function_name,
     line_number_plan_t.fiscal_year_month,
     line_number_t.line_number_name,
     derived_salaries_benefits.fiscal_year_month,
-    derived_salaries_benefits.Salary_benefit_expense,
-    work_load_indicator_plan_t.work_load_indicator_code,
-    work_load_indicator_plan_t.function_code,
-    work_load_indicator_plan_t.Activity_measure,
-    work_load_indicator_plan_t.split_week_number,
-    work_load_indicator_t.work_load_indicator_name
+    derived_salaries_benefits.Salary_benefit_expense
+    # work_load_indicator_plan_t.work_load_indicator_code,
+    # work_load_indicator_plan_t.function_code,
+    # work_load_indicator_plan_t.Activity_measure,
+    # work_load_indicator_plan_t.split_week_number,
+    # work_load_indicator_t.work_load_indicator_name
   ]
   from: finance_number_t
   view_label: "Finance Number"
   join: line_number_plan_t{
-    type: left_outer
+    view_label: "Line_number_plan_t"
+    type: inner
     sql_on: ${Expenses.finance_number}=${line_number_plan_t.finance_number} and ${Expenses.fiscal_year}=${line_number_plan_t.fiscal_year} ;;
-    relationship: one_to_many
+     relationship: one_to_many
   }
   join: line_number_t
   {
-    type: left_outer
+    type: inner
     sql_on: ${line_number_plan_t.line_number_code}=${line_number_t.line_number_code} and ${line_number_plan_t.fiscal_year}=${line_number_t.fiscal_year} ;;
     relationship: many_to_one
   }
   join: derived_salaries_benefits{
     view_label: "Salaries and Benefit "
-    type: left_outer
+    type: inner
     sql_on: ${Expenses.finance_number}=${derived_salaries_benefits.finance_number} and ${Expenses.fiscal_year}=${derived_salaries_benefits.fiscal_year} ;;
     relationship: one_to_many
   }
   join: function_t{
-    type: left_outer
+    type: inner
     sql_on: ${derived_salaries_benefits.function_code}=${function_t.function_code} and ${derived_salaries_benefits.fiscal_year}=${function_t.fiscal_year} ;;
     relationship: many_to_one
   }
-  join: work_load_indicator_plan_t{
-    view_label: "WLIs"
-    type: left_outer
-    sql_on: ${Expenses.finance_number}=${work_load_indicator_plan_t.finance_number} and ${Expenses.fiscal_year}=${work_load_indicator_plan_t.fiscal_year} ;;
-    relationship: one_to_many
-  }
-  join: work_load_indicator_t{
-    type: left_outer
-    sql_on: ${work_load_indicator_plan_t.work_load_indicator_code}=${work_load_indicator_t.work_load_indicator_code} and ${work_load_indicator_plan_t.fiscal_year}=${work_load_indicator_t.fiscal_year} ;;
-    relationship: many_to_one
-  }
+  # join: work_load_indicator_plan_t{
+  #   view_label: "WLIs"
+  #   type: left_outer
+  #   sql_on: ${Expenses.finance_number}=${work_load_indicator_plan_t.finance_number} and ${Expenses.fiscal_year}=${work_load_indicator_plan_t.fiscal_year} ;;
+  #   relationship: one_to_many
+  # }
+  # join: work_load_indicator_t{
+  #   type: left_outer
+  #   sql_on: ${work_load_indicator_plan_t.work_load_indicator_code}=${work_load_indicator_t.work_load_indicator_code} and ${work_load_indicator_plan_t.fiscal_year}=${work_load_indicator_t.fiscal_year} ;;
+  #   relationship: many_to_one
+  # }
 
 }
 

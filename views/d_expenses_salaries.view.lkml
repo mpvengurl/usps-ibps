@@ -71,4 +71,9 @@ view: d_expenses_salaries {
     sql: ${TABLE}.expenses  ;;
     drill_fields: [district_division_name, finance_number_name, area_region_name]
   }
+
+  measure: Ratio_of_salary_to_wlis {
+    type: number
+    sql: ${salary_and_benefits}/${wli_total} ;;
+  }
 }

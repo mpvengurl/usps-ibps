@@ -62,8 +62,8 @@ view: d_expenses_salaries {
   }
   measure: salary_and_benefits {
     type: sum
-    sql: ${TABLE}.salary_and_benefits  ;;
-    value_format: "$0"
+    sql: ${TABLE}.salary_and_benefits/1000  ;;
+    value_format: "$#,##0"
     drill_fields: [district_division_name, finance_number_name, area_region_name]
   }
 
@@ -71,7 +71,7 @@ view: d_expenses_salaries {
     description: "Amount spend, expenses"
     type: sum
     sql: ${TABLE}.expenses  ;;
-    value_format: "$0"
+    value_format: "$#,##0"
     drill_fields: [district_division_name, finance_number_name, area_region_name]
   }
  measure : Employee_Award_expenses {

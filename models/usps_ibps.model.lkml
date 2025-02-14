@@ -16,7 +16,7 @@ named_value_format: usd_in_millions {
   strict_value_format: yes
 }
 
-explore: Expenses {
+explore: expenses {
   from: d_expenses_salaries
 }
 

@@ -52,20 +52,37 @@ view: d_expenses_salaries {
   }
   dimension: line_description {
     type: string
+    description: "Expense category"
     sql: ${TABLE}.line_description ;;
   }
 
-  measure: wli_total {
+  dimension: work_load_description {
+    type: string
+    description: "work_load_type and category"
+    sql: ${TABLE}.work_load_description ;;
+  }
+
+  measure: work_load_indicators {
     type: sum
     sql: ${TABLE}.wli_total ;;
     drill_fields: [district_division_name, finance_number_name, area_region_name]
   }
+
   measure: salary_and_benefits {
+    description: "salben , salandbennies"
     type: sum
     sql: ${TABLE}.salary_and_benefits/1000  ;;
     value_format: "$#,##0"
     drill_fields: [district_division_name, finance_number_name, area_region_name]
   }
+
+  measure: avg_salary_and_benefits {
+    type: average
+    sql: ${TABLE}.salary_and_benefits/1000  ;;
+    value_format: "$#,##0"
+    drill_fields: [district_division_name, finance_number_name, area_region_name]
+  }
+
 
   measure: non_personnel_expenses {
     description: "Amount spend, expenses"
@@ -76,11 +93,63 @@ view: d_expenses_salaries {
   }
  measure : Employee_Award_expenses {
    type: sum
-  sql: case when ${line_description}='Employee Awards' then ${TABLE}.expenses  else 0 end ;;
+  sql: ${TABLE}.expenses ;;
+  filters: [line_description: "Employee Awards"]
+  # sql: case when ${line_description}='Employee Awards' then ${TABLE}.expenses  else 0 end ;;
  }
+
+  measure : fuel_expenses {
+    type: sum
+    sql: ${TABLE}.expenses ;;
+    filters: [line_description: "Vehicle Fuel"]
+    # sql: case when ${line_description}='Employee Awards' then ${TABLE}.expenses  else 0 end ;;
+  }
+
+  measure : package_volume{
+  type: sum
+  sql: ${TABLE}.wli_total ;;
+  filters: [work_load_description: "City Carrier Packages"]
+  # sql: case when ${line_description}='Employee Awards' then ${TABLE}.expenses  else 0 end ;;
+}
+
+  measure : possible_deliveries_volume{
+    type: sum
+    sql: ${TABLE}.wli_total ;;
+    filters: [work_load_description: "Possible Deliveries"]
+    # sql: case when ${line_description}='Employee Awards' then ${TABLE}.expenses  else 0 end ;;
+  }
+
+  measure: Ratio_of_salary_and_benefits_to_package_volume {
+    type: number
+    description: "ratio of salary and benefits to package volume"
+    sql: ${salary_and_benefits}/${package_volume} ;;
+  }
+  measure: Ratio_of_salary_and_benefits_to_expenses {
+    type: number
+    description: "ratio of salary and benefits to expenses"
+    sql: ${salary_and_benefits}/${non_personnel_expenses} ;;
+  }
+
+  measure: Ratio_of_fuel_to_possible_deliveries {
+    type: number
+    description: "fuel to possible deliveries ratio"
+    sql: ${fuel_expenses}/${possible_deliveries_volume} ;;
+  }
+  measure: Ratio_of_fuel_to_package_volume{
+    type: number
+    description: "fuel to packages ratio"
+    sql: ${fuel_expenses}/${package_volume} ;;
+  }
+
+
 
   measure: Ratio_of_salary_to_wlis {
     type: number
-    sql: ${salary_and_benefits}/${wli_total} ;;
+    sql: ${salary_and_benefits}/${work_load_indicators} ;;
+  }
+  measure: total {
+    type: sum
+    sql: ${TABLE}.wli_total+(${TABLE}.salary_and_benefits/1000)+ ${TABLE}.expenses;;
+    value_format: "$#,##0"
   }
 }

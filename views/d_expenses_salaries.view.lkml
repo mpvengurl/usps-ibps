@@ -122,30 +122,30 @@ view: d_expenses_salaries {
   measure: Ratio_of_salary_and_benefits_to_package_volume {
     type: number
     description: "ratio of salary and benefits to package volume"
-    sql: ${salary_and_benefits}/${package_volume} ;;
+    sql: ${salary_and_benefits}/NULLIF(${package_volume},0) ;;
   }
   measure: Ratio_of_salary_and_benefits_to_expenses {
     type: number
     description: "ratio of salary and benefits to expenses"
-    sql: ${salary_and_benefits}/${non_personnel_expenses} ;;
+    sql: ${salary_and_benefits}/NULLIF(${non_personnel_expenses},0) ;;
   }
 
   measure: Ratio_of_fuel_to_possible_deliveries {
     type: number
     description: "fuel to possible deliveries ratio"
-    sql: ${fuel_expenses}/${possible_deliveries_volume} ;;
+    sql: ${fuel_expenses}/NULLIF(${possible_deliveries_volume},0) ;;
   }
   measure: Ratio_of_fuel_to_package_volume{
     type: number
     description: "fuel to packages ratio"
-    sql: ${fuel_expenses}/${package_volume} ;;
+    sql: ${fuel_expenses}/ NULLIF(${package_volume},0) ;;
   }
 
 
 
   measure: Ratio_of_salary_to_wlis {
     type: number
-    sql: ${salary_and_benefits}/${work_load_indicators} ;;
+    sql: ${salary_and_benefits}/NULLIF(${work_load_indicators},0) ;;
   }
   measure: total {
     type: sum

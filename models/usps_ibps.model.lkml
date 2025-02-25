@@ -156,7 +156,7 @@ explore: pricing_plan_paul {}
 
 # explore: revenue_group_t {}
 
-# explore: revenue_plan_t {}
+explore: revenue_plan_t {}
 
 # explore: role_t {}
 

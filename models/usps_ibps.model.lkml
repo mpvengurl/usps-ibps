@@ -5,6 +5,8 @@ connection: "ibps"
 # include all the views
 include: "/views/**/*.view.lkml"
 
+include: "/dashboards/**/*.dashboard"
+
 datagroup: budget_default_datagroup {
   # sql_trigger: SELECT MAX(last_update_date_time) FROM `ibps.pricing_plan_t`;;
   max_cache_age: "1 hour"

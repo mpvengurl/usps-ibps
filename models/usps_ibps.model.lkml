@@ -68,6 +68,16 @@ explore: work_hour_plan_t {
 explore: function_t {}
 explore: bopr_paul {
   label: "Budget Data Model"
+  join: area_region_t {
+    type: left_outer
+    sql_on: ${bopr_paul.area_region_code}=${area_region_t.area_region_code} and ${bopr_paul.fiscal_year}=${area_region_t.fiscal_year};;
+    relationship: many_to_one
+  }
+  join: district_division_t {
+    type: left_outer
+    sql_on: ${bopr_paul.district_division_code}=${district_division_t.district_division_code}and ${bopr_paul.fiscal_year}=${district_division_t.fiscal_year};;
+    relationship: many_to_one
+  }
 }
 
 explore: work_plan_paul {}

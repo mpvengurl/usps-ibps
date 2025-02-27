@@ -8,6 +8,11 @@ view: d_expenses_salaries {
   dimension: area_region_name {
     type: string
     sql: coalesce(${TABLE}.area_region_name, "Unassigned");;
+    link: {
+      label: "View BOPR Report for this Area"
+      url: "https://d356d95d-1e8c-4f43-87c7-a2557d78f26d.looker.app/dashboards/Axwmlhr55iqVLLrv7ZvJW2?Area+Region+Name={{ value }} "
+    }
+
     ##else ${TABLE}.area_region_name end ;;
 
   }
@@ -18,6 +23,10 @@ view: d_expenses_salaries {
   dimension: district_division_name {
     type: string
     sql: coalesce(${TABLE}.district_division_name, "Unassigned") ;;
+    link: {
+      label: "View BOPR Report for this Division"
+      url: "https://d356d95d-1e8c-4f43-87c7-a2557d78f26d.looker.app/dashboards/Axwmlhr55iqVLLrv7ZvJW2?District+Division+Name={{ value }} "
+    }
   }
 
   dimension: expensetype {
@@ -75,14 +84,14 @@ view: d_expenses_salaries {
     type: sum
     sql: ${TABLE}.salary_and_benefits/1000  ;;
     value_format: "$#,##0"
-    drill_fields: [district_division_name, finance_number_name, area_region_name]
+    drill_fields: [area_region_name,district_division_name, finance_number_name,salary_and_benefits]
   }
 
   measure: avg_salary_and_benefits {
     type: average
     sql: ${TABLE}.salary_and_benefits/1000  ;;
     value_format: "$#,##0"
-    drill_fields: [district_division_name, finance_number_name, area_region_name]
+    drill_fields: [area_region_name,district_division_name, finance_number_name,avg_salary_and_benefits]
   }
 
 
@@ -91,7 +100,7 @@ view: d_expenses_salaries {
     type: sum
     sql: ${TABLE}.expenses  ;;
     value_format: "$#,##0"
-    drill_fields: [district_division_name, finance_number_name, area_region_name]
+    drill_fields: [ area_region_name,district_division_name, finance_number_name,non_personnel_expenses]
   }
  measure : Employee_Award_expenses {
    type: sum

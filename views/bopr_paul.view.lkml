@@ -5,6 +5,7 @@ view: bopr_paul {
 ## This model is for demonstration only, meaning it's not designed or tested for the demands of a live, production environment
 
   derived_table: {
+    # sql_trigger_value:SELECT CURDATE() ;;
     sql:
  ------------------------------------ START REVENUE SECTION
   with revenueSection as (

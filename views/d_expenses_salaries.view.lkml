@@ -7,7 +7,9 @@ view: d_expenses_salaries {
   }
   dimension: area_region_name {
     type: string
-    sql: ${TABLE}.area_region_name ;;
+    sql: coalesce(${TABLE}.area_region_name, "Unassigned");;
+    ##else ${TABLE}.area_region_name end ;;
+
   }
   dimension: district_division_code {
     type: string
@@ -15,7 +17,7 @@ view: d_expenses_salaries {
   }
   dimension: district_division_name {
     type: string
-    sql: ${TABLE}.district_division_name ;;
+    sql: coalesce(${TABLE}.district_division_name, "Unassigned") ;;
   }
 
   dimension: expensetype {
@@ -128,6 +130,7 @@ view: d_expenses_salaries {
     type: number
     description: "ratio of salary and benefits to expenses"
     sql: ${salary_and_benefits}/NULLIF(${non_personnel_expenses},0) ;;
+
   }
 
   measure: Ratio_of_fuel_to_possible_deliveries {
@@ -139,6 +142,7 @@ view: d_expenses_salaries {
     type: number
     description: "fuel to packages ratio"
     sql: ${fuel_expenses}/ NULLIF(${package_volume},0) ;;
+
   }
 
 

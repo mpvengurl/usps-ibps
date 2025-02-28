@@ -79,6 +79,11 @@ explore: bopr_paul {
     sql_on: ${bopr_paul.district_division_code}=${district_division_t.district_division_code} and ${bopr_paul.fiscal_year}=${district_division_t.fiscal_year} ;;
     relationship: many_to_one
   }
+  join: finance_number_t {
+    type: left_outer
+    sql_on: ${bopr_paul.finance_number}=${finance_number_t.finance_number} and ${bopr_paul.fiscal_year}=${finance_number_t.fiscal_year};;
+    relationship: many_to_one
+  }
 }
 
 explore: work_plan_paul {}

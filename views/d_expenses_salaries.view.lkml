@@ -40,6 +40,10 @@ view: d_expenses_salaries {
   dimension: finance_number_name {
     type: string
     sql: ${TABLE}.finance_number_name ;;
+    link: {
+    label: "View BOPR Report for this Finance Number"
+    url: "https://d356d95d-1e8c-4f43-87c7-a2557d78f26d.looker.app/dashboards/Axwmlhr55iqVLLrv7ZvJW2?Finance+Number+Name={{ value }} "
+  }
   }
   dimension: fiscal_year {
     type: string

@@ -1,6 +1,6 @@
 view: what_if_analysis {
   parameter: package_volume_ratio {
-    type: number
+    type: unquoted
     label: "Package Volume Ratio (%)"
     default_value: "0"
   }
@@ -11,7 +11,7 @@ view: what_if_analysis {
             fiscal_year,
             area_region_name,
             district_division_name,
-            expenses * (1 + {{package_volume_ratio}} / 100) AS adjusted_expense,
+            expenses * (1 + {% parameter what_if.package_volume_ratio %} / 100) AS adjusted_expense,
             finance_number_name  -- Assuming this column exists
           FROM
             d_expenses_salaries ;;

@@ -24,15 +24,14 @@ view: what_if_analysis {
   #dimension: salary {
   #  type: number
   #}
-  #dimension: adjusted_salary {
-  #   type: number
-  #  label: "Adjusted Salary"
-  #}
-  #measure: total_adjusted_salary {
-  #  type: sum
-   # sql: ${adjusted_salary} ;;
-  #}
-
+  dimension: adjusted_expense {
+     type: number
+    label: "Adjusted Expense"
+  }
+  measure: total_adjusted_expense {
+    type: sum
+    sql: ${adjusted_expense} ;;
+  }
 }
 #view: what_if_analysis {
   # # You can specify the table name if it's different from the view name:

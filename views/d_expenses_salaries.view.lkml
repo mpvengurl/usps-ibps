@@ -158,7 +158,23 @@ view: d_expenses_salaries {
 
   }
 
+  #: package_volume_ratio {
+   # type: number
+   # label: "Package Volume Ratio (%)"
+   #default_value: "0"
+  #}
 
+  #derived_table: {
+    #sql: SELECT
+           # expensetype,
+           # fiscal_year,
+           # area_region_name,
+           # district_division_name,
+           # expenses * (1 + {{package_volume_ratio}} / 100) AS #adjusted_expense,
+           # finance_number_name  -- Assuming this column exists
+          #FROM
+           # d_expenses_salaries ;;
+  #}
 
   measure: Ratio_of_salary_to_wlis {
     type: number

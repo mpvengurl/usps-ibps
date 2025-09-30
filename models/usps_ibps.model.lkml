@@ -24,6 +24,11 @@ explore: expenses {
   from: d_expenses_salaries
 }
 
+#explore: what_if {
+#  from: what_if_analysis
+#}
+
+
 
 explore: derived_salaries_benefits {}
 
